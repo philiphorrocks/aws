@@ -1,18 +1,34 @@
 import boto3
 
-# Connect to EC2 client
 
-ec2client = boto3.client('ec2')
-response = ec2client.describe_instances()
+def awsInstance():
 
-# Get list of all EC2 instances
+    # Connect to EC2 client
 
-for reservation in response["Reservations"]:
-    for instance in reservation["Instances"]:
-        # This sample print will output entire Dictionary object
-        print(instance)
+    ec2client = boto3.client('ec2')
+    response = ec2client.describe_instances()
 
-        # This will print will output the value of the Dictionary key 'InstanceId'
-        print("Instance Name: " + instance["InstanceId"])
-        print("Public DNS: " + instance["PublicDnsName"])
-        print("Zone: " + instance["Placement"]["AvailabilityZone"])
+    # Get list of all EC2 instances
+    print("Getting list of EC2 instances:\n")
+
+    for reservation in response["Reservations"]:
+        for instance in reservation["Instances"]:
+
+            try:
+                # This sample print will output entire Dictionary object
+                #print(instance)
+
+                # This will print will output the value of the Dictionary key 'InstanceId'
+                print("Instance Name: " + instance["InstanceId"])
+                print("Public DNS: " + instance["PublicDnsName"])
+                print("Zone: " + instance["Placement"]["AvailabilityZone"])
+
+            except:
+
+                print("Cannot get AWS instance details")
+
+
+# Main Method
+if __name__ == '__main__':
+
+    awsInstance()
