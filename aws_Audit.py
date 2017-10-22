@@ -51,12 +51,8 @@ def s3StorageDetails():
 
 
 
-def getAWSNetworkDetails():
-
-
-
 # Main Method
 if __name__ == '__main__':
 
-    # awsInstanceDetails()
+    awsInstanceDetails()
     s3StorageDetails()
